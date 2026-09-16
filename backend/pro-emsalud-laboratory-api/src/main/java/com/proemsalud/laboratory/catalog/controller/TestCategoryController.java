@@ -10,6 +10,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -39,6 +40,18 @@ public class TestCategoryController {
 	@Autowired
 	private ITestCategoryService testCategoryService;
 
+	@GetMapping("/search")
+	public ResponseEntity<Map<String, Object>> search(@RequestParam String name) {
+
+		List<TestCategoryResponse> categories = testCategoryService.search(name);
+
+		Map<String, Object> body = new HashMap<>();
+		body.put("message", "Test categoria encontradas");
+		body.put("testCategories", categories);
+
+		return ResponseEntity.ok(body);
+	}
+	
 	@GetMapping("/{id}")
 	public ResponseEntity<TestCategoryResponse> findById(@PathVariable Long id) {
 
@@ -104,16 +117,15 @@ public class TestCategoryController {
 		return ResponseEntity.ok(body);
 	}
 
+	@DeleteMapping("/{id}")
+	public ResponseEntity<Map<String, Object>> delete(@PathVariable Long id) {
 
-	@GetMapping("/search")
-	public ResponseEntity<Map<String, Object>> search(@RequestParam String name) {
-
-		List<TestCategoryResponse> categories = testCategoryService.search(name);
+		testCategoryService.delete(id);
 
 		Map<String, Object> body = new HashMap<>();
-		body.put("message", "Test categoria encontradas");
-		body.put("testCategories", categories);
+		body.put("message", "Categoria de Test referencial borrada exitosamente");
 
 		return ResponseEntity.ok(body);
 	}
+
 }

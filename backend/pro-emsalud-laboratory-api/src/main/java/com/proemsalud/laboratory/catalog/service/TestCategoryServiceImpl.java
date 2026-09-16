@@ -7,6 +7,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
+import com.proemsalud.laboratory.catalog.domain.Test;
 import com.proemsalud.laboratory.catalog.domain.TestCategory;
 import com.proemsalud.laboratory.catalog.dto.create.CreateTestCategoryRequest;
 import com.proemsalud.laboratory.catalog.dto.request.TestCategoryResponse;
@@ -94,6 +95,15 @@ public class TestCategoryServiceImpl implements ITestCategoryService {
 		category.setActive(true);
 
 		testCategoryRepository.save(category);
+	}
+
+	
+	@Override
+	public void delete(Long id) {
+		TestCategory test = testCategoryRepository.findById(id)
+				.orElseThrow(() -> new ResourceNotFoundException("La categoria test referencial no existe con id: " + id));
+		testCategoryRepository.delete(test);
+		
 	}
 
 	

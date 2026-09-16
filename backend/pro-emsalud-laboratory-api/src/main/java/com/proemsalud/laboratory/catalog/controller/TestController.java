@@ -61,7 +61,7 @@ public class TestController {
 		TestResponse test = testService.create(request);
 
 		Map<String, Object> body = new HashMap<>();
-		body.put("message", "Test creado exitosamente");
+		body.put("message", "Test referencial creado exitosamente");
 		body.put("test", test);
 
 		return ResponseEntity.created(URI.create("/api/tests/" + test.getId())).body(body);
@@ -77,7 +77,7 @@ public class TestController {
 				: testService.searchByName(name);
 
 		Map<String, Object> body = new HashMap<>();
-		body.put("message", "Tests encontrados");
+		body.put("message", "Tests referencial encontrados");
 		body.put("tests", tests);
 
 		return ResponseEntity.ok(body);
@@ -91,7 +91,7 @@ public class TestController {
 		TestResponse test = testService.update(id, request);
 
 		Map<String, Object> body = new HashMap<>();
-		body.put("message", "Test actualizado exitosamente");
+		body.put("message", "Test referencial actualizado exitosamente");
 		body.put("test", test);
 
 		return ResponseEntity.ok(body);
@@ -104,7 +104,7 @@ public class TestController {
 		testService.deactivate(id);
 
 		Map<String, Object> body = new HashMap<>();
-		body.put("message", "Test desactivado exitosamente");
+		body.put("message", "Test referencial desactivado exitosamente");
 
 		return ResponseEntity.ok(body);
 	}
@@ -116,7 +116,7 @@ public class TestController {
 		testService.activate(id);
 
 		Map<String, Object> body = new HashMap<>();
-		body.put("message", "Test activado exitosamente");
+		body.put("message", "Test referencial activado exitosamente");
 
 		return ResponseEntity.ok(body);
 	}
@@ -127,7 +127,7 @@ public class TestController {
 		testService.delete(id);
 
 		Map<String, Object> body = new HashMap<>();
-		body.put("message", "Test borrado exitosamente");
+		body.put("message", "Test referencial borrado exitosamente");
 
 		return ResponseEntity.ok(body);
 	}

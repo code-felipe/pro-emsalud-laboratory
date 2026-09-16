@@ -26,4 +26,6 @@ public interface ITestCategoryService {
 	void deactivate(Long id);
 
 	void activate(Long id);
+	
+	void delete(Long id);
 }
