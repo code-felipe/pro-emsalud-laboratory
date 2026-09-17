@@ -13,7 +13,7 @@ import org.springframework.transaction.annotation.Transactional;
 import com.proemsalud.laboratory.catalog.domain.Test;
 import com.proemsalud.laboratory.catalog.domain.TestCategory;
 import com.proemsalud.laboratory.catalog.dto.create.CreateTestRequest;
-import com.proemsalud.laboratory.catalog.dto.request.TestResponse;
+import com.proemsalud.laboratory.catalog.dto.response.TestResponse;
 import com.proemsalud.laboratory.catalog.dto.update.UpdateTestRequest;
 import com.proemsalud.laboratory.catalog.filter.TestFilter;
 import com.proemsalud.laboratory.catalog.mapper.TestMapper;

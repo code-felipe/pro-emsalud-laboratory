@@ -22,7 +22,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.proemsalud.laboratory.catalog.dto.create.CreateTestCategoryRequest;
-import com.proemsalud.laboratory.catalog.dto.request.TestCategoryResponse;
+import com.proemsalud.laboratory.catalog.dto.response.TestCategoryResponse;
 import com.proemsalud.laboratory.catalog.dto.update.UpdateTestCategoryRequest;
 import com.proemsalud.laboratory.catalog.filter.TestCategoryFilter;
 import com.proemsalud.laboratory.catalog.service.ITestCategoryService;

@@ -4,7 +4,7 @@ import org.springframework.stereotype.Component;
 
 import com.proemsalud.laboratory.catalog.domain.TestCategory;
 import com.proemsalud.laboratory.catalog.dto.create.CreateTestCategoryRequest;
-import com.proemsalud.laboratory.catalog.dto.request.TestCategoryResponse;
+import com.proemsalud.laboratory.catalog.dto.response.TestCategoryResponse;
 
 @Component
 public class TestCategoryMapper {

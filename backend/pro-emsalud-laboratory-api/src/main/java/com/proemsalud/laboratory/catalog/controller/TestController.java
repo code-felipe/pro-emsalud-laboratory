@@ -24,7 +24,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.proemsalud.laboratory.catalog.dto.create.CreateTestRequest;
-import com.proemsalud.laboratory.catalog.dto.request.TestResponse;
+import com.proemsalud.laboratory.catalog.dto.response.TestResponse;
 import com.proemsalud.laboratory.catalog.dto.update.UpdateTestRequest;
 import com.proemsalud.laboratory.catalog.filter.TestFilter;
 import com.proemsalud.laboratory.catalog.service.ITestService;

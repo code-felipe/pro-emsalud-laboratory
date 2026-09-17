@@ -6,7 +6,7 @@ import org.springframework.stereotype.Component;
 import com.proemsalud.laboratory.catalog.domain.Test;
 import com.proemsalud.laboratory.catalog.domain.TestCategory;
 import com.proemsalud.laboratory.catalog.dto.create.CreateTestRequest;
-import com.proemsalud.laboratory.catalog.dto.request.TestResponse;
+import com.proemsalud.laboratory.catalog.dto.response.TestResponse;
 
 @Component
 public class TestMapper {

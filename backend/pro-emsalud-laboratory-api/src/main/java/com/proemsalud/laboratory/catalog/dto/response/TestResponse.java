@@ -1,4 +1,4 @@
-package com.proemsalud.laboratory.catalog.dto.request;
+package com.proemsalud.laboratory.catalog.dto.response;
 
 import java.math.BigDecimal;
 import java.time.Instant;

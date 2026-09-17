@@ -1,0 +1,47 @@
+package com.proemsalud.laboratory.patient.dto.update;
+
+import java.time.LocalDate;
+
+import com.proemsalud.laboratory.patient.Gender;
+
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+
+@Getter
+@Setter
+@AllArgsConstructor
+@NoArgsConstructor
+@Builder
+public class UpdatePatientRequest {
+	
+    @NotNull(message = "El género es requerido")
+    private Gender gender;
+    
+    @NotBlank(message = "El primer nombre es requerido")
+    private String firstName;
+
+    @NotBlank(message = "El segundo nombre es requerido")
+    private String middleName;
+
+    @NotBlank(message = "El apellido paterno es requerido")
+    private String fatherLastName;
+
+    @NotBlank(message = "El apellido materno es requerido")
+    private String motherLastName;
+
+    @NotNull(message = "La fecha de nacimiento es requerida")
+    private LocalDate dateOfBirth;
+
+    @NotBlank(message = "El número de teléfono principal es requerido")
+    private String primaryPhoneNumber;
+
+    private String optionalPhoneNumber;
+    
+    @NotBlank(message = "La ciudad es requerida")
+    private String city;
+}

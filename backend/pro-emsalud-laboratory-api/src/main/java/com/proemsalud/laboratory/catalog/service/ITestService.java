@@ -6,7 +6,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
 import com.proemsalud.laboratory.catalog.dto.create.CreateTestRequest;
-import com.proemsalud.laboratory.catalog.dto.request.TestResponse;
+import com.proemsalud.laboratory.catalog.dto.response.TestResponse;
 import com.proemsalud.laboratory.catalog.dto.update.UpdateTestRequest;
 import com.proemsalud.laboratory.catalog.filter.TestFilter;
 
