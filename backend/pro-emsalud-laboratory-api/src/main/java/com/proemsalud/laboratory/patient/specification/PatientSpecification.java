@@ -23,6 +23,7 @@ public class PatientSpecification {
 				
 				Predicate searchPredicate = cb.or(
 				cb.like(cb.lower(root.get("code")), value),
+				cb.like(cb.lower(root.get("city")), value),
 				cb.like(cb.lower(root.get("firstName")), value),
 				cb.like(cb.lower(root.get("middleName")), value),
 				cb.like(cb.lower(root.get("fatherLastName")), value),
@@ -32,7 +33,14 @@ public class PatientSpecification {
 				predicates.add(searchPredicate);
 			}
 			
-
+			if (filter.getGender() != null) {
+				predicates.add(cb.equal(root.get("gender"), filter.getGender()));
+			}
+			
+			if (filter.getDateOfBirth() != null) {
+			    predicates.add(cb.equal(root.get("dateOfBirth"), filter.getDateOfBirth()));
+			}
+			
 			if (filter.getCreatedAtAfter() != null) {
 				predicates.add(cb.greaterThanOrEqualTo(root.get("createdAt"), filter.getCreatedAtAfter()));
 			}

@@ -1,5 +1,8 @@
 package com.proemsalud.laboratory.patient.mapper;
 
+import java.time.LocalDate;
+import java.time.Period;
+
 import org.springframework.stereotype.Component;
 
 
@@ -29,12 +32,14 @@ public class PatientMapper {
 	public PatientResponse toResponse(Patient patient) {
 		return PatientResponse.builder()
 			.id(patient.getId())
+			.code(patient.getCode())
 			.gender(patient.getGender())
 			.firstName(patient.getFirstName())
 			.middleName(patient.getMiddleName())
 			.fatherLastName(patient.getFatherLastName())
 			.motherLastName(patient.getMotherLastName())
 			.dateOfBirth(patient.getDateOfBirth())
+			.age(this.calculateAgeDisplay(patient.getDateOfBirth()))
 			.primaryPhoneNumber(patient.getPrimaryPhoneNumber())
 			.optionalPhoneNumber(patient.getOptionalPhoneNumber())
 			.city(patient.getCity())
@@ -45,5 +50,16 @@ public class PatientMapper {
 	
 	private String normalizeBlank(String value) {
 		return (value == null || value.isBlank()) ? null : value;
+	}
+	
+	public String calculateAgeDisplay(LocalDate dateOfBirth) {
+	    Period period = Period.between(dateOfBirth, LocalDate.now());
+
+	    if (period.getYears() < 1) {
+	        int totalMonths = period.getYears() * 12 + period.getMonths();
+	        return totalMonths + (totalMonths == 1 ? " mes" : " meses");
+	    }
+
+	    return period.getYears() + (period.getYears() == 1 ? " año" : " años");
 	}
 }

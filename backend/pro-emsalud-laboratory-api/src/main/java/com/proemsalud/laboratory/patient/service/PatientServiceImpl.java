@@ -7,6 +7,7 @@ import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.proemsalud.laboratory.catalog.domain.Test;
 import com.proemsalud.laboratory.exception.ResourceNotFoundException;
 import com.proemsalud.laboratory.patient.domain.Patient;
 import com.proemsalud.laboratory.patient.dto.create.CreatePatientRequest;
@@ -36,6 +37,12 @@ public class PatientServiceImpl implements IPatientService {
 		
 
 	    Patient patient = patientMapper.toEntity(request);
+	    
+	    patient.setPrimaryPhoneNumber(request.getPrimaryPhoneNumber());
+	    
+	    if(request.getOptionalPhoneNumber() != null) {
+	    	patient.setOptionalPhoneNumber(request.getOptionalPhoneNumber());
+	    }
 
 	    Patient saved = patientRepository.save(patient);
 
@@ -61,7 +68,14 @@ public class PatientServiceImpl implements IPatientService {
 		patient.setPrimaryPhoneNumber(request.getPrimaryPhoneNumber());
 		patient.setOptionalPhoneNumber(request.getOptionalPhoneNumber());
 		patient.setCity(request.getCity());
-	
+		
+		 patient.setPrimaryPhoneNumber(request.getPrimaryPhoneNumber());
+		 
+		 if(request.getOptionalPhoneNumber() != null) {
+			 
+			 patient.setOptionalPhoneNumber(request.getOptionalPhoneNumber());
+		    }
+
 		
 
 		return patientMapper.toResponse(patient);
@@ -75,6 +89,7 @@ public class PatientServiceImpl implements IPatientService {
 		return patientMapper.toResponse(patient);
 	}
 
+	
 	@Override
 	@Transactional(readOnly = true)
 	public Page<PatientResponse> findAll(PatientFilter filter, Pageable pageable) {
@@ -85,5 +100,16 @@ public class PatientServiceImpl implements IPatientService {
 
 		return page.map(patientMapper::toResponse);
 	}
-
+	
+	private String phoneNumberFormat(String number) {
+		return "+502" + number; 	    
+	}
+	
+	@Override
+	public void delete(Long id) {
+		Patient patient = patientRepository.findById(id)
+				.orElseThrow(() -> new ResourceNotFoundException("El paciente no existe con id: " + id));
+		patientRepository.delete(patient);
+		
+	}
 }

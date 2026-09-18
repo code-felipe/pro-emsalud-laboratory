@@ -18,4 +18,6 @@ public interface IPatientService {
 
 	Page<PatientResponse> findAll(PatientFilter filter, Pageable pageable);
 	
+	void delete(Long id);
+	
 }

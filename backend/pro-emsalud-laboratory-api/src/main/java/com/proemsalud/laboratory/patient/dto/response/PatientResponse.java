@@ -33,6 +33,8 @@ public class PatientResponse {
     private String motherLastName;
 
     private LocalDate dateOfBirth;
+    
+    private String age;
 
     private String primaryPhoneNumber;
 
