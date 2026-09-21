@@ -37,3 +37,18 @@ INSERT INTO patients (code, gender, first_name, middle_name, father_last_name, m
 INSERT INTO patients (code, gender, first_name, middle_name, father_last_name, mother_last_name, date_of_birth, primary_phone_number, optional_phone_number, city, created_at, updated_at) VALUES ('PAC-000004', 'FEMALE', 'Ana', 'Lucía', 'Morales', 'García', '1995-11-03', '32345678', '+50278345678', 'Antigua Guatemala', '2026-02-12 09:00:00', '2026-03-10 13:25:00');
 
 INSERT INTO patients (code, gender, first_name, middle_name, father_last_name, mother_last_name, date_of_birth, primary_phone_number, optional_phone_number, city, created_at, updated_at) VALUES ('PAC-000005', 'MALE', 'Pedro', 'Alejandro', 'Martínez', 'Fuentes', '2026-08-15', '45345678', NULL, 'Cobán', '2026-03-05 15:40:00', '2026-03-22 09:15:00');
+
+-- ============
+-- Doctors
+-- ============
+INSERT INTO doctors (first_name, last_name, title, created_at, updated_at) VALUES ('Carlos', 'Mendoza', 'Dr', '2026-01-10 08:30:00', '2026-03-22 09:15:00');
+INSERT INTO doctors (first_name, last_name, title, created_at, updated_at) VALUES ('Laura', 'Ramírez', 'Dra', '2026-01-12 10:00:00', '2026-03-20 14:30:00');
+INSERT INTO doctors (first_name, last_name, title, created_at, updated_at) VALUES ('Andrés', 'González','Dr', '2026-02-05 09:45:00', '2026-03-18 11:20:00');
+
+-- ============
+-- Orders
+-- ============
+INSERT INTO orders (order_status, created_at, updated_at, patient_id, doctor_id) VALUES ('IN_PROGRESS', '2026-01-10 08:30:00', '2026-03-22 09:15:00', 1, 1);
+INSERT INTO orders (order_status, created_at, updated_at, patient_id, doctor_id) VALUES ('COMPLETED', '2026-01-15 10:20:00', '2026-03-22 11:45:00', 1, 2);
+INSERT INTO orders (order_status, created_at, updated_at, patient_id, doctor_id) VALUES ('COMPLETED', '2026-02-05 09:45:00', '2026-03-18 11:20:00', 2, 3);
+

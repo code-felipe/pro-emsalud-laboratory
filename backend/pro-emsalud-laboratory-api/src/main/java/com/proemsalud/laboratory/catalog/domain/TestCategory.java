@@ -38,7 +38,7 @@ public class TestCategory {
 	private Boolean active;
 
 	@OneToMany(mappedBy = "category")
-	private List<Test> tests; // ← antes era List<Test> tests
+	private List<Test> tests; 
 
 	@Column(name = "created_at")
 	private Instant createdAt;

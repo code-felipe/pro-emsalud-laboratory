@@ -1,9 +1,10 @@
-package com.proemsalud.laboratory.exam.domain;
+package com.proemsalud.laboratory.oder.domain;
 
 import java.time.Instant;
 import java.time.LocalDate;
 
-import com.proemsalud.laboratory.exam.enumerate.ExamStatus;
+import com.proemsalud.laboratory.doctor.domain.Doctor;
+import com.proemsalud.laboratory.oder.enumerate.OrderStatus;
 import com.proemsalud.laboratory.patient.domain.Patient;
 
 import jakarta.persistence.Column;
@@ -31,18 +32,15 @@ import lombok.Setter;
 @NoArgsConstructor
 @Builder
 @Entity
-@Table(name = "laboratory_orders")
-public class LaboratoryOrder {
+@Table(name = "orders")
+public class Order {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	
-	@Column(name = "performed_at")
-	private LocalDate performedAt;
-	
 	@Enumerated(EnumType.STRING)
-	@Column(name = "exam_status")
-	private ExamStatus status;
+	@Column(name = "order_status")
+	private OrderStatus status;
 	
 	@Column(name = "created_at")
 	private Instant createdAt;
@@ -53,6 +51,10 @@ public class LaboratoryOrder {
 	@ManyToOne(fetch = FetchType.LAZY, optional = false)
 	@JoinColumn(name = "patient_id", nullable = false)
 	private Patient patient;
+	
+	@ManyToOne(fetch = FetchType.LAZY, optional = false)
+	@JoinColumn(name = "doctor_id", nullable = false)
+	private Doctor doctor;
 	
 	@PrePersist
 	protected void prePersist() {

@@ -1,20 +1,17 @@
-package com.proemsalud.laboratory.patient.domain;
-
+package com.proemsalud.laboratory.doctor.domain;
 
 
 import java.time.Instant;
-import java.time.LocalDate;
-import java.util.ArrayList;
 import java.util.List;
 
+import com.proemsalud.laboratory.catalog.domain.Test;
+import com.proemsalud.laboratory.doctor.enumerate.DoctorTitle;
 import com.proemsalud.laboratory.oder.domain.Order;
-import com.proemsalud.laboratory.patient.Gender;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
-import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -34,41 +31,21 @@ import lombok.Setter;
 @NoArgsConstructor
 @Builder
 @Entity
-@Table(name = "patients")
-public class Patient {
+@Table(name = "doctors")
+public class Doctor {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	
-	private String code;
-	
-	@Enumerated(EnumType.STRING)
-	@Column(name = "gender")
-	private Gender gender;
-	
 	@Column(name = "first_name")
 	private String firstName;
 	
-	@Column(name = "middle_name")
-	private String middleName;
+	@Column(name = "last_name")
+	private String lastName;
 	
-	@Column(name = "father_last_name")
-	private String fatherLastName;
-	
-	@Column(name = "mother_last_name")
-	private String motherLastName;
-	
-	@Column(name = "date_of_birth", nullable = false)
-	private LocalDate dateOfBirth;
-	
-	@Column(name = "primary_phone_number", nullable = false)
-	private String primaryPhoneNumber;
-	
-	@Column(name = "optional_phone_number")
-	private String optionalPhoneNumber;
-	
-	private String city;
+	@Enumerated(EnumType.STRING)
+	private DoctorTitle title;
 	
 	@Column(name = "created_at")
 	private Instant createdAt;
@@ -76,9 +53,9 @@ public class Patient {
 	@Column(name = "updated_at")
 	private Instant updatedAt;
 	
-	@OneToMany(mappedBy = "patient", fetch = FetchType.LAZY)
-	private List<Order> orders = new ArrayList<>();
-	
+	@OneToMany(mappedBy = "doctor")
+	private List<Order> orders; 
+
 	
 	@PrePersist
 	protected void prePersist() {
@@ -93,5 +70,7 @@ public class Patient {
 		updatedAt = Instant.now();
 	}
 	
-
+	public String getFullName() {
+		return this.firstName + " " + lastName;
+	}
 }
