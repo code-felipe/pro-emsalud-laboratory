@@ -17,12 +17,16 @@ import com.proemsalud.laboratory.doctor.mapper.DoctorMapper;
 import com.proemsalud.laboratory.doctor.repository.IDoctorRepository;
 import com.proemsalud.laboratory.doctor.specification.DoctorSpecification;
 import com.proemsalud.laboratory.exception.ResourceNotFoundException;
+import com.proemsalud.laboratory.oder.repository.IOrderRepository;
 
 @Service
 public class DoctorServiceImpl implements IDoctorService {
 	
 	@Autowired
 	private IDoctorRepository doctorRepository;
+	
+	@Autowired
+	private IOrderRepository orderRepository;
 	
 	@Autowired
 	private DoctorMapper doctorMapper;
@@ -71,6 +75,11 @@ public class DoctorServiceImpl implements IDoctorService {
 		Doctor doctor = doctorRepository.findById(id)
 				.orElseThrow(() -> new ResourceNotFoundException("El doctor con id: " + id + " no existe"));
 		
+		if (orderRepository.existsByDoctorId(id)) {
+		        throw new IllegalArgumentException(
+		            "No se puede eliminar la ficha del doctor porque está siendo utilizado en las ordenes de algun paciente."
+		        );
+		    }
 		doctorRepository.delete(doctor);
 		
 	}

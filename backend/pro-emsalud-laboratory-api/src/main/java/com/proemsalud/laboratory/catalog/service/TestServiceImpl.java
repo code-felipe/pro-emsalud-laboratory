@@ -18,18 +18,22 @@ import com.proemsalud.laboratory.catalog.dto.update.UpdateTestRequest;
 import com.proemsalud.laboratory.catalog.filter.TestFilter;
 import com.proemsalud.laboratory.catalog.mapper.TestMapper;
 import com.proemsalud.laboratory.catalog.repository.TestCategoryRepository;
-import com.proemsalud.laboratory.catalog.repository.TestRepository;
+import com.proemsalud.laboratory.catalog.repository.ITestRepository;
 import com.proemsalud.laboratory.catalog.specification.TestSpecification;
 import com.proemsalud.laboratory.exception.ResourceNotFoundException;
+import com.proemsalud.laboratory.result.repository.ITestResultRepository;
 
 @Service
 public class TestServiceImpl implements ITestService {
 
 	@Autowired
-	private TestRepository testRepository;
+	private ITestRepository testRepository;
 
 	@Autowired
 	private TestCategoryRepository testCategoryRepository;
+	
+	@Autowired
+	private ITestResultRepository testResultRepository;
 
 	@Autowired
 	private TestMapper testMapper;
@@ -132,6 +136,12 @@ public class TestServiceImpl implements ITestService {
 	public void delete(Long id) {
 		Test test = testRepository.findById(id)
 				.orElseThrow(() -> new ResourceNotFoundException("El test no existe con id: " + id));
+		
+		if (testResultRepository.existsByTestId(id)) {
+		        throw new IllegalArgumentException(
+		            "No se puede eliminar el test porque está siendo utilizado en resultados de pacientes."
+		        );
+		    }
 		testRepository.delete(test);
 		
 	}

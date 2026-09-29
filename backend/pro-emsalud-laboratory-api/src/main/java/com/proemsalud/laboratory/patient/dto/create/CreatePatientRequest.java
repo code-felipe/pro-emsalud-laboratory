@@ -2,7 +2,7 @@ package com.proemsalud.laboratory.patient.dto.create;
 
 import java.time.LocalDate;
 
-import com.proemsalud.laboratory.patient.Gender;
+import com.proemsalud.laboratory.patient.enumerate.Gender;
 
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;

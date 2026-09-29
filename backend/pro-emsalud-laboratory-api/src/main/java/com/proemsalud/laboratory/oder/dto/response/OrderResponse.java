@@ -35,4 +35,6 @@ public class OrderResponse {
 	private String doctorFullName;
 	
 	private DoctorTitle doctorTitle;
+	
+	private Double totalOrder;
 }

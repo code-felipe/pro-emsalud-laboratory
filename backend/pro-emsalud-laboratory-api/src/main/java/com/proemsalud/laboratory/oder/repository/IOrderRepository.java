@@ -13,4 +13,6 @@ public interface IOrderRepository extends JpaRepository<Order, Long>, JpaSpecifi
 	public Optional<Order> findByIdAndPatientId(Long id, Long patientId);
 	
 	public Page<Order> findAllByPatientId(Long patientId, Pageable pageable);
+	
+	boolean existsByDoctorId(Long doctorId);
 }

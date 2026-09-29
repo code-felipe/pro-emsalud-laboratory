@@ -52,3 +52,13 @@ INSERT INTO orders (order_status, created_at, updated_at, patient_id, doctor_id)
 INSERT INTO orders (order_status, created_at, updated_at, patient_id, doctor_id) VALUES ('COMPLETED', '2026-01-15 10:20:00', '2026-03-22 11:45:00', 1, 2);
 INSERT INTO orders (order_status, created_at, updated_at, patient_id, doctor_id) VALUES ('COMPLETED', '2026-02-05 09:45:00', '2026-03-18 11:20:00', 2, 3);
 
+-- ============
+-- Test Results
+-- ============
+INSERT INTO test_results (result, unit_price, order_id, test_id, created_at, updated_at) VALUES ('30 mg',30, 1, 1, '2026-01-10 08:30:00', '2026-05-22 09:15:00');
+INSERT INTO test_results (result, unit_price, order_id, test_id, created_at, updated_at) VALUES ('40 mg',59, 1, 1, '2026-01-20 08:30:00', '2026-06-22 09:15:00');
+INSERT INTO test_results (result, unit_price, order_id, test_id, created_at, updated_at) VALUES ('60 mg',39.23, 1, 1, '2026-02-10 08:30:00', '2026-07-22 09:15:00');
+INSERT INTO test_results (result, unit_price, order_id, test_id, created_at, updated_at) VALUES ('50 mg',19.39, 1, 3, '2026-02-11 08:30:00', '2026-08-22 09:15:00');
+INSERT INTO test_results (result, unit_price, order_id, test_id, created_at, updated_at) VALUES ('30 mg',11.39, 1, 2, '2026-03-12 08:30:00', '2026-09-22 09:15:00');
+INSERT INTO test_results (result, unit_price, order_id, test_id, created_at, updated_at) VALUES ('25 mg',0, 2, 2, '2025-04-10 08:30:00', '2026-10-22 09:15:00');
+

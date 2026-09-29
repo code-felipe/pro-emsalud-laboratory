@@ -3,7 +3,7 @@ package com.proemsalud.laboratory.patient.dto.response;
 import java.time.Instant;
 import java.time.LocalDate;
 
-import com.proemsalud.laboratory.patient.Gender;
+import com.proemsalud.laboratory.patient.enumerate.Gender;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;

@@ -23,7 +23,7 @@ public class OrderSpecification {
 			}
 
 			if (hasText(filter.getDoctorName())) {
-				predicates.add(cb.like(cb.lower(root.get("doctor").get("name")),
+				predicates.add(cb.like(cb.lower(root.get("doctor").get("firstName")),
 						"%" + filter.getDoctorName().trim().toLowerCase() + "%"));
 			}
 

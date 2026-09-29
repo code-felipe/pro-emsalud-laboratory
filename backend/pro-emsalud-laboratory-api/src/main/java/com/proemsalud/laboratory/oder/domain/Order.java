@@ -2,11 +2,15 @@ package com.proemsalud.laboratory.oder.domain;
 
 import java.time.Instant;
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 
 import com.proemsalud.laboratory.doctor.domain.Doctor;
 import com.proemsalud.laboratory.oder.enumerate.OrderStatus;
 import com.proemsalud.laboratory.patient.domain.Patient;
+import com.proemsalud.laboratory.result.domain.TestResult;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
@@ -17,6 +21,7 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.PrePersist;
 import jakarta.persistence.PreUpdate;
 import jakarta.persistence.Table;
@@ -55,6 +60,11 @@ public class Order {
 	@ManyToOne(fetch = FetchType.LAZY, optional = false)
 	@JoinColumn(name = "doctor_id", nullable = false)
 	private Doctor doctor;
+	
+	@OneToMany(
+			mappedBy = "order", fetch = FetchType.LAZY,
+			cascade = CascadeType.ALL, orphanRemoval = true)
+	private List<TestResult> results = new ArrayList<>(); 
 	
 	@PrePersist
 	protected void prePersist() {

@@ -8,8 +8,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.proemsalud.laboratory.oder.domain.Order;
-import com.proemsalud.laboratory.patient.Gender;
+import com.proemsalud.laboratory.patient.enumerate.Gender;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
@@ -76,7 +77,8 @@ public class Patient {
 	@Column(name = "updated_at")
 	private Instant updatedAt;
 	
-	@OneToMany(mappedBy = "patient", fetch = FetchType.LAZY)
+	@OneToMany(mappedBy = "patient", fetch = FetchType.LAZY,
+			cascade = CascadeType.ALL, orphanRemoval = true)
 	private List<Order> orders = new ArrayList<>();
 	
 	

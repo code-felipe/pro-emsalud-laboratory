@@ -32,4 +32,11 @@ public class OrderMapper {
 			.build();
 	}
 	
+	
+//	private Double totalOrder(Order order) {
+//		
+//		Double total = order.getResults().stream()
+//				.map(price -> price.get)
+//	}
+	
 }
