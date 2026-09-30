@@ -57,4 +57,11 @@ public class PatientOrderTestResultController {
 
 		return ResponseEntity.created(URI.create("/api/test-results/" + result.getId())).body(body);
 	}
+	
+	@GetMapping("/{testResultId}")
+	public ResponseEntity<TestResultResponse> getOne(@PathVariable Long patientId, @PathVariable Long orderId,
+			@PathVariable Long testResultId) {
+
+		return ResponseEntity.ok(testResultService.findByIdAndOrderIdAndPatientId(testResultId, orderId, patientId));
+	}
 }

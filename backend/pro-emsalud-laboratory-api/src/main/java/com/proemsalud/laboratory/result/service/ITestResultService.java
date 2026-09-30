@@ -18,6 +18,8 @@ public interface ITestResultService {
 
 	TestResultResponse findById(Long id);
 	
+	TestResultResponse findByIdAndOrderIdAndPatientId(Long id, Long orderId, Long patientId);
+	
 	void delete(Long id);
 	
 }

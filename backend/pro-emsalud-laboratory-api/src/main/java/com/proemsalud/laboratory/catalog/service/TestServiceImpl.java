@@ -91,24 +91,54 @@ public class TestServiceImpl implements ITestService {
 
 		return page.map(testMapper::toResponse);
 	}
-
+	
+	
 	@Override
-	public List<TestResponse> searchByName(String name) {
-
-		return testRepository.findByNameContainingIgnoreCaseAndActiveTrue(name)
-				.stream()
-				.map(testMapper::toResponse)
-				.collect(Collectors.toList());
+	public List<TestResponse> searchTests(String query) {
+	    return testRepository.searchActiveTests(query)
+	            .stream()
+	            .map(testMapper::toResponse)
+	            .collect(Collectors.toList());
 	}
-
-	@Override
-	public List<TestResponse> searchByNameAndCategoryId(String name, Long categoryId) {
-
-		return testRepository.findByNameContainingIgnoreCaseAndActiveTrueAndCategoryId(name, categoryId)
-				.stream()
-				.map(testMapper::toResponse)
-				.collect(Collectors.toList());
-	}
+	
+//	// SEARCH CASE: 1
+//	@Override
+//	public List<TestResponse> searchByName(String name) {
+//
+//		return testRepository.findByNameContainingIgnoreCaseAndActiveTrue(name)
+//				.stream()
+//				.map(testMapper::toResponse)
+//				.collect(Collectors.toList());
+//	}
+	
+//	// SEARCH CASE: 2
+//	@Override
+//	public List<TestResponse> searchByCategoryName(String categoryName) {
+//		return testRepository.findByCategoryNameContainingIgnoreCaseAndActiveTrue(categoryName)
+//				.stream()
+//				.map(testMapper::toResponse)
+//				.collect(Collectors.toList());
+//	}
+//	
+//	// SEARCH CASE: 3
+//	@Override
+//	public List<TestResponse> searchByNameAndCategoryName(String name, String categoryName) {
+//		return testRepository.findByNameContainingIgnoreCaseAndActiveTrueAndCategoryName(name, categoryName)
+//				.stream()
+//				.map(testMapper::toResponse)
+//				.collect(Collectors.toList());
+//	}
+//	
+//	
+//	// NO IN USE
+//	@Override
+//	public List<TestResponse> searchByNameAndCategoryId(String name, Long categoryId) {
+//
+//		return testRepository.findByNameContainingIgnoreCaseAndActiveTrueAndCategoryId(name, categoryId)
+//				.stream()
+//				.map(testMapper::toResponse)
+//				.collect(Collectors.toList());
+//	}
 
 	@Override
 	public void deactivate(Long id) {
@@ -142,6 +172,7 @@ public class TestServiceImpl implements ITestService {
 		            "No se puede eliminar el test porque está siendo utilizado en resultados de pacientes."
 		        );
 		    }
+		
 		testRepository.delete(test);
 		
 	}

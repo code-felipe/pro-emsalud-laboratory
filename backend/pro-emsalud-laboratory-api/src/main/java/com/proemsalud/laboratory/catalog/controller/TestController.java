@@ -67,21 +67,62 @@ public class TestController {
 		return ResponseEntity.created(URI.create("/api/tests/" + test.getId())).body(body);
 	}
 	
-	// === Search by name (+ category opcional) ===
-
 	@GetMapping("/search")
-	public ResponseEntity<Map<String, Object>> search(@RequestParam String name,
-			@RequestParam(required = false) Long categoryId) {
+	public ResponseEntity<Map<String, Object>> search(
+	        @RequestParam String query) {
 
-		List<TestResponse> tests = categoryId != null ? testService.searchByNameAndCategoryId(name, categoryId)
-				: testService.searchByName(name);
+	    List<TestResponse> tests = testService.searchTests(query);
 
-		Map<String, Object> body = new HashMap<>();
-		body.put("message", "Tests referencial encontrados");
-		body.put("tests", tests);
+	    Map<String, Object> body = new HashMap<>();
+	    body.put("message", "Tests referencial encontrados");
+	    body.put("tests", tests);
 
-		return ResponseEntity.ok(body);
+	    return ResponseEntity.ok(body);
 	}
+
+	
+	// === Search by name (+ category opcional) ===
+//	@GetMapping("/search")
+//	public ResponseEntity<Map<String, Object>> search(
+//	        @RequestParam(required = false) String name,
+//	        @RequestParam(required = false) String categoryName) {
+//
+//	    List<TestResponse> tests;
+//
+//	    boolean hasName = name != null && !name.isBlank();
+//	    boolean hasCategory = categoryName != null && !categoryName.isBlank();
+//
+//	    if (hasName && hasCategory) {
+//	        tests = testService.searchByNameAndCategoryName(name, categoryName);
+//	    } else if (hasName) {
+//	        tests = testService.searchByName(name);
+//	    } else if (hasCategory) {
+//	        tests = testService.searchByCategoryName(categoryName);
+//	    } else {
+//	        tests = List.of();
+//	    }
+//
+//	    Map<String, Object> body = new HashMap<>();
+//	    body.put("message", "Tests referencial encontrados");
+//	    body.put("tests", tests);
+//
+//	    return ResponseEntity.ok(body);
+//	}
+
+//	@GetMapping("/search")
+//	public ResponseEntity<Map<String, Object>> search(
+//			@RequestParam String name,
+//			@RequestParam(required = false) Long categoryId) {
+//
+//		List<TestResponse> tests = categoryId != null ? testService.searchByNameAndCategoryId(name, categoryId)
+//				: testService.searchByName(name);
+//
+//		Map<String, Object> body = new HashMap<>();
+//		body.put("message", "Tests referencial encontrados");
+//		body.put("tests", tests);
+//
+//		return ResponseEntity.ok(body);
+//	}
 	
 
 	@PutMapping("/{id}")

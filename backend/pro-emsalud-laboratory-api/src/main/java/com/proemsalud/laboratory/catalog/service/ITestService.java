@@ -20,9 +20,15 @@ public interface ITestService {
 
 	Page<TestResponse> findAll(TestFilter filter, Pageable pageable);
 	
-	List<TestResponse> searchByName(String name);
+	List<TestResponse> searchTests(String query);
 	
-	List<TestResponse> searchByNameAndCategoryId(String name, Long categoryId);
+//	List<TestResponse> searchByName(String name);
+//	
+//	List<TestResponse> searchByCategoryName(String categoryName);
+//	
+//	List<TestResponse> searchByNameAndCategoryId(String name, Long categoryId);
+//	
+//	List<TestResponse> searchByNameAndCategoryName(String name, String categoryName);
 	
 	void deactivate(Long id);
 

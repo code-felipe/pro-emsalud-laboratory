@@ -23,7 +23,7 @@ import jakarta.validation.Valid;
 @RestController
 @RequestMapping("/api/test-results")
 public class TestResultController {
-	
+
 	@Autowired
 	private ITestResultService testResultService;
 
@@ -32,9 +32,9 @@ public class TestResultController {
 		return ResponseEntity.ok(testResultService.findById(id));
 	}
 
+
 	@PutMapping("/{id}")
-	public ResponseEntity<Map<String, Object>> update(
-			@PathVariable Long id,
+	public ResponseEntity<Map<String, Object>> update(@PathVariable Long id,
 			@Valid @RequestBody UpdateTestResultRequest request) {
 
 		TestResultResponse testResult = testResultService.update(id, request);
@@ -48,7 +48,7 @@ public class TestResultController {
 
 	@DeleteMapping("/{id}")
 	public ResponseEntity<Map<String, Object>> delete(@PathVariable Long id) {
-		
+
 		testResultService.delete(id);
 
 		Map<String, Object> body = new HashMap<>();

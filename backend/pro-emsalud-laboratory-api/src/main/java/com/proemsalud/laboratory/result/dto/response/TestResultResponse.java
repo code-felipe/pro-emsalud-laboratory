@@ -3,6 +3,8 @@ package com.proemsalud.laboratory.result.dto.response;
 import java.math.BigDecimal;
 import java.time.Instant;
 
+import com.proemsalud.laboratory.catalog.enumerate.TestType;
+
 import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -22,6 +24,12 @@ public class TestResultResponse {
 	private String result;
 	
 	private String testName;
+	
+	private String categoryName;
+	
+	private TestType testType;
+	
+	private String testReference;
 	
 	private BigDecimal unitPrice;
 	

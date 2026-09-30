@@ -12,5 +12,11 @@ public interface ITestResultRepository extends JpaRepository<TestResult, Long>, 
 	Optional<TestResult> findByIdAndOrderId(Long id, Long orderId);
 	
 	boolean existsByTestId(Long testId);
+	
+	  Optional<TestResult> findByIdAndOrderIdAndOrderPatientId(
+	            Long id,
+	            Long orderId,
+	            Long patientId
+	    );
 
 }

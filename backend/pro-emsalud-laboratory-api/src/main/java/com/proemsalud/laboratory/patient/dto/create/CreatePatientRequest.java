@@ -26,13 +26,11 @@ public class CreatePatientRequest {
     @NotBlank(message = "El primer nombre es requerido")
     private String firstName;
 
-    @NotBlank(message = "El segundo nombre es requerido")
     private String middleName;
 
     @NotBlank(message = "El apellido paterno es requerido")
     private String fatherLastName;
 
-    @NotBlank(message = "El apellido materno es requerido")
     private String motherLastName;
 
     @NotNull(message = "La fecha de nacimiento es requerida")
