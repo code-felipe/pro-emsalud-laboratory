@@ -39,7 +39,7 @@ public class PatientMapper {
 			.fatherLastName(patient.getFatherLastName())
 			.motherLastName(patient.getMotherLastName())
 			.dateOfBirth(patient.getDateOfBirth())
-			.age(this.calculateAgeDisplay(patient.getDateOfBirth()))
+			.age(patient.calculateAgeDisplay())
 			.primaryPhoneNumber(patient.getPrimaryPhoneNumber())
 			.optionalPhoneNumber(patient.getOptionalPhoneNumber())
 			.city(patient.getCity())
@@ -52,14 +52,4 @@ public class PatientMapper {
 		return (value == null || value.isBlank()) ? null : value;
 	}
 	
-	public String calculateAgeDisplay(LocalDate dateOfBirth) {
-	    Period period = Period.between(dateOfBirth, LocalDate.now());
-
-	    if (period.getYears() < 1) {
-	        int totalMonths = period.getYears() * 12 + period.getMonths();
-	        return totalMonths + (totalMonths == 1 ? " mes" : " meses");
-	    }
-
-	    return period.getYears() + (period.getYears() == 1 ? " año" : " años");
-	}
 }

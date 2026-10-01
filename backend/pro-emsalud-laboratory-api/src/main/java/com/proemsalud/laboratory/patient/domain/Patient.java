@@ -4,6 +4,7 @@ package com.proemsalud.laboratory.patient.domain;
 
 import java.time.Instant;
 import java.time.LocalDate;
+import java.time.Period;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -95,5 +96,19 @@ public class Patient {
 		updatedAt = Instant.now();
 	}
 	
+	public String getFullName() {
+		return this.firstName + " " + fatherLastName;
+	}
+	
+	public String calculateAgeDisplay() {
+		
+	    Period period = Period.between(this.dateOfBirth, LocalDate.now());
 
+	    if (period.getYears() < 1) {
+	        int totalMonths = period.getYears() * 12 + period.getMonths();
+	        return totalMonths + (totalMonths == 1 ? " mes" : " meses");
+	    }
+
+	    return period.getYears() + (period.getYears() == 1 ? " año" : " años");
+	}
 }

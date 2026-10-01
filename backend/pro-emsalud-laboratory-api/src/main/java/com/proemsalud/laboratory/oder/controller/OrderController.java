@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.proemsalud.laboratory.oder.dto.response.OrderReportResponse;
 import com.proemsalud.laboratory.oder.dto.response.OrderResponse;
 import com.proemsalud.laboratory.oder.dto.update.UpdateOrderRequest;
 import com.proemsalud.laboratory.oder.service.IOrderService;
@@ -33,6 +34,17 @@ public class OrderController {
 	public ResponseEntity<OrderResponse> findById(@PathVariable Long id) {
 		return ResponseEntity.ok(orderService.findById(id));
 	}
+	
+	@GetMapping("/{id}/report")
+	public ResponseEntity<OrderReportResponse> getReport(
+	        @PathVariable Long patientId,
+	        @PathVariable Long orderId) {
+
+	    return ResponseEntity.ok(
+	            orderService.getReport(orderId, patientId)
+	    );
+	}
+
 
 	@PutMapping("/{id}")
 	public ResponseEntity<Map<String, Object>> update(@PathVariable Long id,

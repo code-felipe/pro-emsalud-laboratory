@@ -19,6 +19,7 @@ import org.springframework.data.web.PageableDefault;
 import org.springframework.data.domain.Sort;
 
 import com.proemsalud.laboratory.oder.dto.create.CreateOrderRequest;
+import com.proemsalud.laboratory.oder.dto.response.OrderReportResponse;
 import com.proemsalud.laboratory.oder.dto.response.OrderResponse;
 import com.proemsalud.laboratory.oder.filter.OrderFilter;
 import com.proemsalud.laboratory.oder.service.IOrderService;
@@ -54,4 +55,16 @@ public class PatientOrderController {
 
 		return ResponseEntity.created(URI.create("/api/orders/" + order.getId())).body(body);
 	}
+	
+
+	@GetMapping("/{id}/report")
+	public ResponseEntity<OrderReportResponse> getReport(
+	        @PathVariable Long patientId,
+	        @PathVariable Long id) {
+
+	    return ResponseEntity.ok(
+	            orderService.getReport(id, patientId)
+	    );
+	}
+
 }

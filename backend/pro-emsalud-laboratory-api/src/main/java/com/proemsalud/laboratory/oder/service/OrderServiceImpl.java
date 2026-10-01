@@ -11,6 +11,7 @@ import com.proemsalud.laboratory.doctor.repository.IDoctorRepository;
 import com.proemsalud.laboratory.exception.ResourceNotFoundException;
 import com.proemsalud.laboratory.oder.domain.Order;
 import com.proemsalud.laboratory.oder.dto.create.CreateOrderRequest;
+import com.proemsalud.laboratory.oder.dto.response.OrderReportResponse;
 import com.proemsalud.laboratory.oder.dto.response.OrderResponse;
 import com.proemsalud.laboratory.oder.dto.update.UpdateOrderRequest;
 import com.proemsalud.laboratory.oder.enumerate.OrderStatus;
@@ -121,6 +122,22 @@ public class OrderServiceImpl implements IOrderService {
 		order.setStatus(OrderStatus.COMPLETED);
 		
 		orderRepository.save(order);
+		
+	}
+
+	@Override
+	public OrderReportResponse getReport(Long orderId, Long patientId) {
+		
+		Order order = orderRepository.findById(orderId)
+				.orElseThrow(() -> new ResourceNotFoundException(
+						"La orden con id: " + orderId + " no existe" ));
+		
+	    if (!order.getPatient().getId().equals(patientId)) {
+	        throw new ResourceNotFoundException(
+	                "La orden no pertenece al paciente indicado");
+	    }
+
+	    return orderMapper.toReport(order);
 		
 	}
 }

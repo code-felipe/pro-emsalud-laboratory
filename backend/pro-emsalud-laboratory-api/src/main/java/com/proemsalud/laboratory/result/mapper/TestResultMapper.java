@@ -6,6 +6,7 @@ import com.proemsalud.laboratory.catalog.domain.Test;
 import com.proemsalud.laboratory.oder.domain.Order;
 import com.proemsalud.laboratory.result.domain.TestResult;
 import com.proemsalud.laboratory.result.dto.create.CreateTestResultRequest;
+import com.proemsalud.laboratory.result.dto.response.TestResultReportResponse;
 import com.proemsalud.laboratory.result.dto.response.TestResultResponse;
 
 @Component
@@ -33,6 +34,16 @@ public class TestResultMapper {
 				.testId(testResult.getTest().getId())
 				.createdAt(testResult.getCreatedAt())
 				.updatedAt(testResult.getUpdatedAt())
+				.build();
+	}
+	
+	public TestResultReportResponse toReport(TestResult testResult) {
+		return TestResultReportResponse.builder()
+				.id(testResult.getId())
+				.testName(testResult.getTest().getName())
+				.testType(testResult.getTest().getTestType())
+				.result(testResult.getResult())
+				.reference(testResult.getTest().getReference())
 				.build();
 	}
 }
