@@ -61,7 +61,7 @@ public class TestResultServiceImpl implements ITestResultService {
 				.orElseThrow(() -> new ResourceNotFoundException(
 						"La orden con id: " + orderId + " no pertenece al paciente con id: " + patientId));
 
-		Specification<TestResult> spec = TestResultSpecification.withFilters(filter, order.getId());
+		Specification<TestResult> spec = TestResultSpecification.withFilters(filter, order.getId(), order.getPatient().getId());
 		return testResultRepository.findAll(spec, pageable).map(testResultMapper::toResponse);
 	}
 
@@ -109,5 +109,18 @@ public class TestResultServiceImpl implements ITestResultService {
 
 		return testResultMapper.toResponse(testResult);
 	}
+
+	@Override
+	public Page<TestResultResponse> findByPatientId(
+			TestResultFilter filter,
+	        Long patientId,
+	        Pageable pageable) {
+		Specification<TestResult> spec = TestResultSpecification.withFilters(filter, null, patientId);
+		
+		 return testResultRepository
+		            .findAll(spec, pageable)
+		            .map(testResultMapper::toResponse);
+	}
+
 
 }

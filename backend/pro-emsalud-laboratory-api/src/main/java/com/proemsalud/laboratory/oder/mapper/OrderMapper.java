@@ -35,6 +35,7 @@ public class OrderMapper {
 			.doctorId(order.getDoctor().getId())
 			.doctorName(order.getDoctor().getFirstName())
 			.doctorFullName(order.getDoctor().getFullName())
+			.totalOrder(order.calcTotalPriceTestResults())
 			.doctorTitle(order.getDoctor().getTitle())
 			.createdAt(order.getCreatedAt())
 			.updatedAt(order.getUpdatedAt())

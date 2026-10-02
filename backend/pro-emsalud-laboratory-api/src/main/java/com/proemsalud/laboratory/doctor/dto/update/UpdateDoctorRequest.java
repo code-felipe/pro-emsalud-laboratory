@@ -1,6 +1,6 @@
 package com.proemsalud.laboratory.doctor.dto.update;
 
-import com.proemsalud.laboratory.doctor.enumerate.DoctorTitle;
+import com.proemsalud.laboratory.doctor.enumerate.Title;
 
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
@@ -24,5 +24,5 @@ public class UpdateDoctorRequest {
 	private String lastName;
 	
 	@NotNull(message = "El titulo del doctor(a) es requerido")
-	private DoctorTitle title;
+	private Title title;
 }

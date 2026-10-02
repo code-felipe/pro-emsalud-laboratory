@@ -34,16 +34,6 @@ public class OrderController {
 	public ResponseEntity<OrderResponse> findById(@PathVariable Long id) {
 		return ResponseEntity.ok(orderService.findById(id));
 	}
-	
-	@GetMapping("/{id}/report")
-	public ResponseEntity<OrderReportResponse> getReport(
-	        @PathVariable Long patientId,
-	        @PathVariable Long orderId) {
-
-	    return ResponseEntity.ok(
-	            orderService.getReport(orderId, patientId)
-	    );
-	}
 
 
 	@PutMapping("/{id}")

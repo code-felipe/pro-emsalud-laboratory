@@ -20,6 +20,8 @@ public interface ITestResultService {
 	
 	TestResultResponse findByIdAndOrderIdAndPatientId(Long id, Long orderId, Long patientId);
 	
+	Page<TestResultResponse>findByPatientId(TestResultFilter filter, Long patientId, Pageable pageable);
+	
 	void delete(Long id);
 	
 }

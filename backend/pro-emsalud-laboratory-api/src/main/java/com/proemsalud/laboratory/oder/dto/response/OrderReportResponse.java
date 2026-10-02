@@ -3,7 +3,7 @@ package com.proemsalud.laboratory.oder.dto.response;
 import java.time.Instant;
 import java.util.List;
 
-import com.proemsalud.laboratory.doctor.enumerate.DoctorTitle;
+import com.proemsalud.laboratory.doctor.enumerate.Title;
 import com.proemsalud.laboratory.result.dto.response.TestResultReportResponse;
 
 import lombok.AllArgsConstructor;
@@ -31,7 +31,7 @@ public class OrderReportResponse {
 	
 	private String doctorFullName;
 	
-	private DoctorTitle doctorTitle;
+	private Title doctorTitle;
 	
 	private Instant createdAt;
 	

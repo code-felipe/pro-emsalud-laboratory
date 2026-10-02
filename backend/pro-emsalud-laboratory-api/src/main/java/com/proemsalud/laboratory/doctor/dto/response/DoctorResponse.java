@@ -2,7 +2,7 @@ package com.proemsalud.laboratory.doctor.dto.response;
 
 import java.time.Instant;
 
-import com.proemsalud.laboratory.doctor.enumerate.DoctorTitle;
+import com.proemsalud.laboratory.doctor.enumerate.Title;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
@@ -22,7 +22,7 @@ public class DoctorResponse {
 	
 	private String lastName;
 	
-	private DoctorTitle title;
+	private Title title;
 	
 	private Instant createdAt;
 

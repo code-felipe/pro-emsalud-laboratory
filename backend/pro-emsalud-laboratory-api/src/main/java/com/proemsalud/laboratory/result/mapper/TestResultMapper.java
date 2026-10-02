@@ -30,6 +30,7 @@ public class TestResultMapper {
 				.testName(testResult.getTest().getName())
 				.categoryName(testResult.getTest().getCategory().getName())
 				.testReference(testResult.getTest().getReference())
+				.orderId(testResult.getOrder().getId())
 				.testType(testResult.getTest().getTestType())
 				.testId(testResult.getTest().getId())
 				.createdAt(testResult.getCreatedAt())

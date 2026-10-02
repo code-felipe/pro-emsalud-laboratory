@@ -16,7 +16,9 @@ import jakarta.persistence.criteria.Predicate;
 
 public class TestResultSpecification {
 	
-	public static Specification<TestResult> withFilters(TestResultFilter filter, Long orderId) {
+	public static Specification<TestResult> withFilters(
+			TestResultFilter filter, Long orderId,
+			Long patientId) {
 		
 		return (root, query, cb) -> {
 	        List<Predicate> predicates = new ArrayList<>();
@@ -24,6 +26,10 @@ public class TestResultSpecification {
 	    	if (orderId != null) {
 				predicates.add(cb.equal(root.get("order").get("id"), orderId));
 			}
+	    	
+	    	if (patientId != null) {
+	    	    predicates.add(cb.equal(root.get("order").get("patient").get("id"), patientId));
+	    	}
 	        // joins: TestResult -> Test -> TestCategory
 	        Join<TestResult, Test> testJoin = root.join("test", JoinType.INNER);
 	        Join<Test, TestCategory> categoryJoin = testJoin.join("category", JoinType.INNER);

@@ -1,8 +1,9 @@
 package com.proemsalud.laboratory.oder.dto.response;
 
+import java.math.BigDecimal;
 import java.time.Instant;
 
-import com.proemsalud.laboratory.doctor.enumerate.DoctorTitle;
+import com.proemsalud.laboratory.doctor.enumerate.Title;
 import com.proemsalud.laboratory.oder.enumerate.OrderStatus;
 
 import lombok.AllArgsConstructor;
@@ -34,7 +35,7 @@ public class OrderResponse {
 	
 	private String doctorFullName;
 	
-	private DoctorTitle doctorTitle;
+	private Title doctorTitle;
 	
-	private Double totalOrder;
+	private BigDecimal totalOrder;
 }

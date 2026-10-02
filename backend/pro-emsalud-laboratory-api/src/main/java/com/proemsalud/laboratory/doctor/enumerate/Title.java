@@ -1,6 +1,9 @@
 package com.proemsalud.laboratory.doctor.enumerate;
 
-public enum DoctorTitle {
+public enum Title {
 	Dr,
-	Dra
+	Dra,
+	EA,
+	EP,
+	NA
 }

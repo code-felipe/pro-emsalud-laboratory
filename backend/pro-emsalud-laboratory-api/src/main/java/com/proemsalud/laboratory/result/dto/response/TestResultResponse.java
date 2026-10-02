@@ -31,6 +31,8 @@ public class TestResultResponse {
 	
 	private String testReference;
 	
+	private Long orderId;
+	
 	private BigDecimal unitPrice;
 	
 	private Instant createdAt;

@@ -1,5 +1,6 @@
 package com.proemsalud.laboratory.oder.domain;
 
+import java.math.BigDecimal;
 import java.time.Instant;
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -61,6 +62,7 @@ public class Order {
 	@JoinColumn(name = "doctor_id", nullable = false)
 	private Doctor doctor;
 	
+	@Builder.Default //Avoid un-expected error when creates and  calculate the total price
 	@OneToMany(
 			mappedBy = "order", fetch = FetchType.LAZY,
 			cascade = CascadeType.ALL, orphanRemoval = true)
@@ -78,4 +80,11 @@ public class Order {
 
 		updatedAt = Instant.now();
 	}
+	
+	public BigDecimal calcTotalPriceTestResults() {
+	    return results.stream()
+	            .map(result -> result.getUnitPrice())
+	            .reduce(BigDecimal.ZERO, (total, price) -> total.add(price));
+	}
+
 }

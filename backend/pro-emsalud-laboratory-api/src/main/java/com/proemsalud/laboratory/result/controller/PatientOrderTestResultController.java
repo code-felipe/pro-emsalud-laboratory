@@ -34,7 +34,8 @@ public class PatientOrderTestResultController {
 	private ITestResultService testResultService;
 
 	@GetMapping
-	public ResponseEntity<Page<TestResultResponse>> list(TestResultFilter filter,
+	public ResponseEntity<Page<TestResultResponse>> list(
+			TestResultFilter filter,
 			@PageableDefault(page = 0, size = 50, sort = "id", direction = Sort.Direction.DESC) Pageable pageable,
 			@PathVariable Long patientId,
 			@PathVariable Long orderId) {
